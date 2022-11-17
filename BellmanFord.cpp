@@ -1,12 +1,12 @@
 #include<bits/stdc++.h>
 using namespace std;
-typedef struct graph
+struct graph
 {
- int s;
- int d;
- int w;
+ int s; //src
+ int d; //destination
+ int w; //weight 
 };
-int checkvalidation(struct graph *arr,int size,int s,int d)
+int checkvalidation(struct graph *arr,int size,int s,int d) //s source
 {
  for(int i=0;i<size;i++)
  {
@@ -38,7 +38,7 @@ int checknegativecyle(struct graph *gr,int *arr,int t)
 }
 int main()
 {
- int n=0,s,t=0;
+ int n=0,s,t=0;//n=no of vertices, t no of edges, s = src
  while(n<=3)
  {
  cout<<"Enter the the no of Vertices"<<endl;
@@ -46,17 +46,19 @@ int main()
  if(n<=3)
  cout<<"Enter valid no vertices"<<endl;
  }
- int *arr=(int*)malloc((n)*sizeof(int));
+
+ int *arr = new int [n];
  for(int i=0;i<n;i++)
  arr[i]=INT_MAX;
- while(t<n-1)
+ while(t<n-1) //t no of edges
  {
  cout<<"Enter the the no of edges in the graph"<<endl;
  cin>>t;
  if(t<n-1)
  cout<<"Enter valid no of edges"<<endl;
  }
- graph *gr = (graph*)malloc(t*sizeof(graph));
+
+ graph *gr = new graph[t];
  cout<<"Enter Edge from source->destination =weight"<<endl;
  for(int i=0;i<t;i++)
  {
@@ -93,8 +95,8 @@ cin>>s;
  flag=0;
  for(int i=0;i<t;i++)
  {
- if(arr[gr[i].s-1]!=INT_MAX){
- temp=arr[gr[i].s-1]+gr[i].w;
+ if(arr[gr[i].s-1]!=INT_MAX){ //arr=dist
+ temp=arr[gr[i].s-1]+gr[i].w; 
  if(arr[gr[i].d-1]>temp)
  {
  arr[gr[i].d-1]=temp;flag=1;
